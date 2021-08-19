@@ -1,19 +1,15 @@
-function getInputValue(){
-    let depositInput = document.getElementById('deposit-input');
-    let depositAmountText = depositInput.value;
-    let depositAmount = parseFloat(depositAmountText);
-    depositInput.value = '';
-    return depositAmount;
+function getInputValue(inputId){
+    let inputField = document.getElementById(inputId);
+    let inputAmountText = inputField.value;
+    let amountValue = parseFloat(inputAmountText);
+    inputField.value = '';
+    return amountValue;
 }
 
 
 document.getElementById('deposit-button').addEventListener('click',function(){
-    // console.log('depo clicked');
-    
-    // let depositInput = document.getElementById('deposit-input');
-    // let depositAmountText = depositInput.value;
-    // let depositAmount = parseFloat(depositAmountText);
-    let depositAmount = getInputValue();
+  
+    let depositAmount = getInputValue('deposit-input');
 
     // current diposit
     let depositTotal =document.getElementById('deposit-total');
@@ -24,8 +20,6 @@ document.getElementById('deposit-button').addEventListener('click',function(){
     let newDepositeTotal = previousDepositTotal + depositAmount;
 
     depositTotal.innerText = newDepositeTotal;
-
-    
 
 
     // update balance
@@ -40,10 +34,8 @@ document.getElementById('deposit-button').addEventListener('click',function(){
 
 // widthdraw event handler
 document.getElementById('widthdraw-button').addEventListener('click',function(){
-    let widthdrawInput = document.getElementById('widthdraw-input');
-    let widthdrawAmountText = widthdrawInput.value;
-    let WidthdrawAmount = parseFloat(widthdrawAmountText);
-    // console.log(widthdrawAmountText);
+   
+    let WidthdrawAmount  = getInputValue('widthdraw-input');
 
     let widthdrawTotal = document.getElementById('widthdraw-total');
     let widthdrawTotalText = widthdrawTotal.innerText;
@@ -51,10 +43,9 @@ document.getElementById('widthdraw-button').addEventListener('click',function(){
 
     let newWidthdrawTotal = newWidthdrawAmount + WidthdrawAmount;
 
-
     widthdrawTotal.innerText = newWidthdrawTotal;
 
-    widthdrawInput.value = '';
+    
     // widthdrawTotal.innerText = widthdrawAmount;
     let balanceTotal = document.getElementById('balance-total');
     let previousBalanceText = balanceTotal.innerText;
