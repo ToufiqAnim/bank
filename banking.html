@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Banking Page</title>
+    <link
+      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <h1 class="text-5xl text-center mt-8">
+        Money Money Money
+        <span class="font-bold text-purple-600">Moooooneeeyyyyy!!!!</span>
+      </h1>
+    </header>
+
+    <main class="w-3/4 mx-auto">
+      <!-- balance and transection -->
+      <section class="mt-12">
+        
+        <!-- DEPOSIT -->
+        <div class="grid grid-cols-3 gap-4 text-white font-semibold">
+          <div class="bg-blue-300 p-12 rounded">
+            <h3 class="text-2xl">Deposit</h3>
+            <h4 class="text-4xl">$<span id="deposit-total">00</span></h4>
+          </div>
+
+          <!-- WIDTHDRAW -->
+          <div class="bg-green-300 p-12 rounded">
+            <h3 class="text-2xl">Widthdraw</h3>
+            <h4 class="text-4xl">$<span id="widthdraw-total">00</span></h4>
+          </div>
+
+          <!-- BALANCE -->
+          <div class="bg-yellow-300 p-12 rounded">
+            <h3 class="text-2xl">Balance</h3>
+            <h4 class="text-4xl">$<span id="balance-total">1500</span></h4>
+          </div>
+        </div>
+      </section>
+
+      <!-- DEPOSIT AND WIDTHDRAW BUTTON -->
+
+      <section class="mt-10">
+        <div class="grid grid-cols-2 gap-4">
+          <div class="bg-purple-300 p-8 rounded">
+
+            <!-- DEPOSIT BUTTON-->
+            <h3 class="text-3xl mb-2">Please Deposite</h3>
+
+            <div>
+              <input id="deposit-input" class="border block w-3/4 border-gray-400 rounded mb-4 p-2" type="email" placeholder="$ Amount You Want To Deposit"/>
+
+              <button id="deposit-button" class="bg-purple-500 px-5 py-2 rounded text-white font-semibold"> Deposite</button>
+            </div>
+          </div>
+
+          <!-- WIDTHDRAW BUTTON-->
+          <div class="bg-red-200 p-8 rounded">
+            <h3 class="text-3xl mb-2">Please Widhdraw</h3>
+
+            <div>
+              <input id="widthdraw-input" class="border block w-3/4 border-gray-400 rounded mb-4 p-2" type="email" placeholder="$ Amount You Want To Widthdraw"/>
+
+              <button id="widthdraw-button" class="bg-purple-500 px-5 py-2 rounded text-white font-semibold"> Widthdraw </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="js/banking.js"></script>
+  </body>
+</html>
