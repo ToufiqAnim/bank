@@ -1,57 +1,63 @@
 function getInputValue(inputId){
-    let inputField = document.getElementById(inputId);
-    let inputAmountText = inputField.value;
-    let amountValue = parseFloat(inputAmountText);
+    // debugger;
+    const inputField = document.getElementById(inputId);
+    const inputAmountText = inputField.value;
+    const amountValue = parseFloat(inputAmountText);
     inputField.value = '';
     return amountValue;
+}
+
+function updateTotalAmount(totalFieldId, depositAmount){
+    // debugger;
+    const totalAmount =document.getElementById(totalFieldId);    
+    const totalText = totalAmount.innerText;
+    const previousTotal = parseFloat(totalText);
+    totalAmount.innerText = previousTotal + depositAmount;
+}
+function getCurrentBalance(){
+    const balanceTotal = document.getElementById('balance-total');
+    const previousBalanceText = balanceTotal.innerText;
+    const previousBalanceTotal = parseFloat(previousBalanceText);
+    return previousBalanceTotal;
+}
+function updateBalance(amount, issAdd){
+    // debugger;
+     const balanceTotal = document.getElementById('balance-total');
+   /* const previousBalanceText = balanceTotal.innerText;
+    const previousBalanceTotal = parseFloat(previousBalanceText); */
+    const previousBalanceTotal = getCurrentBalance();
+    if (issAdd == true){
+        balanceTotal.innerText = previousBalanceTotal + amount;
+    }
+    else{
+        balanceTotal.innerText = previousBalanceTotal - amount;
+    }
 }
 
 
 document.getElementById('deposit-button').addEventListener('click',function(){
   
-    let depositAmount = getInputValue('deposit-input');
+    const depositAmount = getInputValue('deposit-input');
 
-    // current diposit
-    let depositTotal =document.getElementById('deposit-total');
+    if (depositAmount > 0){
+        updateTotalAmount('deposit-total', depositAmount);
+        updateBalance(depositAmount, true);
+    }
     
-    
-    let previousDepositText = depositTotal.innerText;
-    let previousDepositTotal = parseFloat(previousDepositText);
-    let newDepositeTotal = previousDepositTotal + depositAmount;
-
-    depositTotal.innerText = newDepositeTotal;
-
-
-    // update balance
-    let balanceTotal = document.getElementById('balance-total');
-    let previousBalanceText = balanceTotal.innerText;
-    let previousBalanceTotal = parseFloat(previousBalanceText);
-
-    let newBalanceTotal = previousBalanceTotal + depositAmount;
-    balanceTotal.innerText = newBalanceTotal;
     
 })
 
 // widthdraw event handler
 document.getElementById('widthdraw-button').addEventListener('click',function(){
-   
-    let WidthdrawAmount  = getInputValue('widthdraw-input');
 
-    let widthdrawTotal = document.getElementById('widthdraw-total');
-    let widthdrawTotalText = widthdrawTotal.innerText;
-    let newWidthdrawAmount = parseFloat(widthdrawTotalText);
-
-    let newWidthdrawTotal = newWidthdrawAmount + WidthdrawAmount;
-
-    widthdrawTotal.innerText = newWidthdrawTotal;
-
+    const widthdrawAmount  = getInputValue('widthdraw-input');
+    const currentBalance = getCurrentBalance();
+    if (widthdrawAmount > 0 && widthdrawAmount <= currentBalance){
+        updateTotalAmount('widthdraw-total', widthdrawAmount);
+        updateBalance(widthdrawAmount, false);
+    }
+     if (widthdrawAmount> currentBalance){
+         console.log('You are excedding your current balance!!!')
+     }
     
-    // widthdrawTotal.innerText = widthdrawAmount;
-    let balanceTotal = document.getElementById('balance-total');
-    let previousBalanceText = balanceTotal.innerText;
-    let previousBalanceTotal = parseFloat(previousBalanceText);
-
-    let newBalanceTotal = previousBalanceTotal - WidthdrawAmount;
-    balanceTotal.innerText = newBalanceTotal;
-   // upadate balnce after widthdraw
 })
